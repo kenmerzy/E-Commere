@@ -4,4 +4,4 @@ export const SCREEN_NAME = {
   LoginScreen: 'LoginScreen',
 }
 
-export const API_URL = '192.168.1.142:3000/api'
+export const API_URL = 'https://huymanh.dev/ecommerce/api'
