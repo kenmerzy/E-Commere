@@ -1,4 +1,5 @@
 import SplashScreen from './SlpashScreen'
+import HomeScreen from './HomeScreen'
 
 // AUTH
 import LoginScreen from './auth/LoginScreen'
@@ -8,4 +9,5 @@ export {
   SplashScreen,
   LoginScreen,
   RegisterScreen,
+  HomeScreen,
 }

@@ -1,20 +1,26 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 import { userTypes } from '../types'
-import { userActions } from '../actions'
+import { API_URL } from '../../configs'
 
 function* registerUserSaga(action) {
   try {
-    const user = yield call(
-      () => axios.get('https://huymanh.dev/ecommerce/api')
+    const registerResopne = yield call(
+      () => axios.get(`${API_URL}/user/register`, {
+        email: action?.payload?.data?.email,
+        password: action?.payload?.data?.password,
+        fullname: action?.payload?.data?.fullname,
+      })
     )
-    yield put({ type: userTypes.GET_WEATHER_SUCCESS, payload: { data: user.data } })
+    yield put({
+      type: userTypes.REGISTER_USER_SUCCESS,
+      payload: { data: registerResopne.data },
+    })
   } catch (error) {
     yield put({ type: userTypes.REGISTER_USER_FAILED, payload: { error } })
   }
 }
-function* userSaga() {
-  yield takeLatest(userTypes.GET_WEATHER, registerUserSaga)
-}
 
-export default userSaga
+export default function* userSaga() {
+  yield takeLatest(userTypes.REGISTER_USER, registerUserSaga)
+}
