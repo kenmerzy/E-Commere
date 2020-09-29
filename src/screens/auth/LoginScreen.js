@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View, Image, Dimensions, StyleSheet, TextInput, TouchableOpacity,
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useDispatch } from 'react-redux'
-import { iconLogo, iconEmail, iconPassword } from '../../../assets/images'
-import { Colors, Fonts, TextStyles } from '../../../assets/styles'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  iconLogo, iconEmail, iconPassword, iconFacebook, iconGoogle,
+} from '../../../assets/images'
+import { Colors, TextStyles } from '../../../assets/styles'
 import { Text } from '../../components'
 import { userActions } from '../../redux/actions'
 import { SCREEN_NAME } from '../../configs'
@@ -20,6 +22,18 @@ const LoginScreen = (props) => {
   const [emailUser, setEmailUser] = useState(__DEV__ ? 'bot1@gmail.com' : '')
   const [passwordUser, setPasswordUser] = useState(__DEV__ ? '123456' : '')
 
+  const user = useSelector((state) => state)
+  console.tron.log('===============================================')
+  console.tron.log('userToken', user?.token)
+  console.tron.log('===============================================')
+
+  const [userToken, setUserToken] = useState('')
+  useEffect(() => {
+
+  }, [user])
+  const handleRegisterPress = () => {
+    navigation.navigate(SCREEN_NAME.RegisterScreen)
+  }
   const handleLoginPress = async () => {
     try {
       dispatch(userActions.loginUser({
@@ -27,16 +41,14 @@ const LoginScreen = (props) => {
         password: passwordUser,
       }))
 
-      navigation.navigate(SCREEN_NAME.HomeScreen)
+      if (userToken !== '') {
+        navigation.navigate(SCREEN_NAME.HomeScreen)
+      }
     } catch (error) {
-      console.tron.log('===============================================')
-      console.tron.log('failed to login')
-      console.tron.log('===============================================')
+
     }
   }
-  const ab123213213213c = () => {
-    setEmailUser(emailUser + 1)
-  }
+
   return (
     <View style={{
       flex: 1,
@@ -155,7 +167,7 @@ const LoginScreen = (props) => {
           onPress={handleLoginPress}
         >
           <View style={{
-            width,
+            width: width - 32,
             height: 57,
             borderRadius: 5,
             backgroundColor: Colors.primaryBlue,
@@ -174,6 +186,155 @@ const LoginScreen = (props) => {
             </Text>
           </View>
         </TouchableOpacity>
+        <View
+          style={{
+            marginTop: 21,
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
+          <View style={{
+            flex: 1,
+            borderWidth: 2 * StyleSheet.hairlineWidth,
+            borderColor: Colors.neutralLight,
+            marginRight: 25,
+          }}
+          />
+          <Text style={{
+            ...TextStyles.bodyMediumTextBold,
+            color: Colors.neutralGrey,
+          }}
+          >
+            OR
+          </Text>
+          <View
+            style={{
+              flex: 1,
+              borderWidth: 2 * StyleSheet.hairlineWidth,
+              borderColor: Colors.neutralLight,
+              marginLeft: 25,
+
+            }}
+          />
+        </View>
+        <TouchableOpacity
+          onPress={() => { }}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: 16,
+              paddingVertical: 16,
+              borderWidth: 2 * StyleSheet.hairlineWidth,
+              borderColor: Colors.neutralLight,
+              borderRadius: 5,
+            }}
+          >
+            <Image
+              source={iconGoogle}
+              style={{
+                width: 24,
+                height: 24,
+              }}
+              resizeMode="contain"
+            />
+            <View style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            >
+              <Text style={{
+                ...TextStyles.bodyMediumTextBold,
+                color: Colors.neutralGrey,
+              }}
+              >
+                Login with Google
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { }}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: 16,
+              paddingVertical: 16,
+              borderWidth: 2 * StyleSheet.hairlineWidth,
+              borderColor: Colors.neutralLight,
+              borderRadius: 5,
+              marginTop: 8,
+            }}
+          >
+            <Image
+              source={iconFacebook}
+              style={{
+                width: 24,
+                height: 24,
+              }}
+              resizeMode="contain"
+            />
+            <View style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            >
+              <Text style={{
+                ...TextStyles.bodyMediumTextBold,
+                color: Colors.neutralGrey,
+              }}
+              >
+                Login with Facebook
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { }}
+        >
+          <View style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 16,
+            marginBottom: 8,
+          }}
+          >
+            <Text style={{
+              ...TextStyles.linkSmall,
+              color: Colors.primaryBlue,
+            }}
+            >
+              Forgot Password?
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{
+            ...TextStyles.bodyNormalTextRegular,
+            color: Colors.neutralGrey,
+          }}
+          >
+            Don’t have an account?
+            {' '}
+          </Text>
+          <TouchableOpacity
+            onPress={handleRegisterPress}
+
+          >
+            <Text style={{
+              ...TextStyles.linkSmall,
+              color: Colors.primaryBlue,
+            }}
+            >
+              Register
+            </Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   )
