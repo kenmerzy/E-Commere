@@ -12,7 +12,6 @@ function* registerUserSaga(action) {
         fullname: action?.payload?.data?.fullname,
       })
     )
-
     console.tron.log('registerResopne', registerResopne)
 
     yield put({
@@ -24,20 +23,25 @@ function* registerUserSaga(action) {
   }
 }
 function* loginUserSaga(action) {
+  const { callback, data } = action.payload
+  const { email, password } = data
   try {
     const loginResopne = yield call(
       () => axios.post(`${API_URL}/user/login`, {
-        email: action?.payload?.data?.email,
-        password: action?.payload?.data?.password,
+        email,
+        password,
       })
     )
-    console.tron.log({ loginResopne })
-    yield put({
-      type: userTypes.LOGIN_USER_SUCCESS,
-      payload: { data: loginResopne.data.data },
-    })
+
+    if (loginResopne.data.success) {
+      yield put({
+        type: userTypes.LOGIN_USER_SUCCESS,
+        payload: { data: loginResopne.data.data },
+      })
+      callback(loginResopne?.data)
+    }
   } catch (error) {
-    yield put({ type: userTypes.LOGIN_USER_FAILED, payload: { error } })
+    callback(error.response.data)
   }
 }
 
