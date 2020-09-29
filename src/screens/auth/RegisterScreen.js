@@ -6,7 +6,8 @@ import {
 import { ScrollView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useDispatch, useSelector } from 'react-redux'
-import { Colors, TextStyles } from '../../../assets/styles'
+import { showMessage, hideMessage } from 'react-native-flash-message'
+import { Colors, TextStyles, MessageStyles } from '../../../assets/styles'
 import { Text } from '../../components'
 import {
   iconLogo, iconEmail, iconPassword, iconFullname,
@@ -22,7 +23,6 @@ const RegisterScreen = (props) => {
   const [passwordAgain, setPasswordAgain] = useState(__DEV__ ? '123456' : '')
   const [isTextInputFocus, setIsTextInputFocus] = useState(false)
   const { navigation } = props
-  const user = useSelector((state) => state)
   const dispatch = useDispatch()
   const handleRegisterPress = () => {
     if (password === passwordAgain) {
@@ -34,7 +34,11 @@ const RegisterScreen = (props) => {
         }
       ))
     } else {
-      setPasswordAgain('Password confirm incorrect')
+      showMessage({
+        message: 'Password confirm incorrect',
+        type: 'info',
+        ...MessageStyles.error,
+      })
     }
   }
   const handleLoginPress = () => {

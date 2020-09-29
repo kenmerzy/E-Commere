@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import {
-  View, Image, Dimensions, StyleSheet, TextInput, TouchableOpacity,
+  View, Image, Dimensions, StyleSheet, TextInput, TouchableOpacity, Alert,
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useDispatch, useSelector } from 'react-redux'
+import { showMessage, hideMessage } from 'react-native-flash-message'
 import {
   iconLogo, iconEmail, iconPassword, iconFacebook, iconGoogle,
 } from '../../../assets/images'
-import { Colors, TextStyles } from '../../../assets/styles'
+import { Colors, TextStyles, MessageStyles } from '../../../assets/styles'
 import { Text } from '../../components'
 import { userActions } from '../../redux/actions'
 import { SCREEN_NAME } from '../../configs'
+import { Helpers, NavigationHelpers } from '../../utils'
 
 const { width } = Dimensions.get('window')
 const screenScale = 375 / width
@@ -22,30 +24,20 @@ const LoginScreen = (props) => {
   const [emailUser, setEmailUser] = useState(__DEV__ ? 'bot1@gmail.com' : '')
   const [passwordUser, setPasswordUser] = useState(__DEV__ ? '123456' : '')
 
-  const user = useSelector((state) => state)
-
-  console.tron.log({ userToken: user })
-
-  const [userToken, setUserToken] = useState('')
-  useEffect(() => {
-
-  }, [user])
   const handleRegisterPress = () => {
     navigation.navigate(SCREEN_NAME.RegisterScreen)
   }
   const handleLoginPress = async () => {
-    try {
-      dispatch(userActions.loginUser({
-        email: emailUser,
-        password: passwordUser,
-      }))
-
-      if (user?.user?.token !== '') {
+    dispatch(userActions.loginUser({
+      email: emailUser,
+      password: passwordUser,
+    }, (response) => {
+      if (response.success) {
         navigation.navigate(SCREEN_NAME.HomeScreen)
+      } else {
+        Helpers.showMess(response.message, 'error')
       }
-    } catch (error) {
-
-    }
+    }))
   }
 
   return (
@@ -81,7 +73,7 @@ const LoginScreen = (props) => {
 
             }}
           >
-            Welcome to Lafyuu31231
+            Welcome to Lafyuu
           </Text>
           <Text
             style={{
@@ -123,7 +115,6 @@ const LoginScreen = (props) => {
               placeholder="Your Email"
               value={emailUser}
               onChangeText={(text) => { setEmailUser(text) }}
-
             />
           </View>
         </View>
@@ -158,7 +149,6 @@ const LoginScreen = (props) => {
               onChangeText={(text) => {
                 setPasswordUser(text)
               }}
-
             />
           </View>
         </View>
@@ -323,7 +313,6 @@ const LoginScreen = (props) => {
           </Text>
           <TouchableOpacity
             onPress={handleRegisterPress}
-
           >
             <Text style={{
               ...TextStyles.linkSmall,
