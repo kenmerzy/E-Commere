@@ -23,9 +23,8 @@ const LoginScreen = (props) => {
   const [passwordUser, setPasswordUser] = useState(__DEV__ ? '123456' : '')
 
   const user = useSelector((state) => state)
-  console.tron.log('===============================================')
-  console.tron.log('userToken', user?.token)
-  console.tron.log('===============================================')
+
+  console.tron.log({ userToken: user })
 
   const [userToken, setUserToken] = useState('')
   useEffect(() => {
@@ -41,7 +40,7 @@ const LoginScreen = (props) => {
         password: passwordUser,
       }))
 
-      if (userToken !== '') {
+      if (user?.user?.token !== '') {
         navigation.navigate(SCREEN_NAME.HomeScreen)
       }
     } catch (error) {
@@ -316,7 +315,7 @@ const LoginScreen = (props) => {
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <Text style={{
             ...TextStyles.bodyNormalTextRegular,
-            color: Colors.neutralGrey,
+            color: Colors.neutralDark,
           }}
           >
             Don’t have an account?

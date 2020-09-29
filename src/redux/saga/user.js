@@ -12,9 +12,9 @@ function* registerUserSaga(action) {
         fullname: action?.payload?.data?.fullname,
       })
     )
-    console.tron.log('===============================================')
+
     console.tron.log('registerResopne', registerResopne)
-    console.tron.log('===============================================')
+
     yield put({
       type: userTypes.REGISTER_USER_SUCCESS,
       payload: { data: registerResopne.data },
@@ -31,12 +31,10 @@ function* loginUserSaga(action) {
         password: action?.payload?.data?.password,
       })
     )
-    console.tron.log('===============================================')
-    console.tron.log('loginResopne', loginResopne)
-    console.tron.log('===============================================')
+    console.tron.log({ loginResopne })
     yield put({
       type: userTypes.LOGIN_USER_SUCCESS,
-      payload: { data: loginResopne.data },
+      payload: { data: loginResopne.data.data },
     })
   } catch (error) {
     yield put({ type: userTypes.LOGIN_USER_FAILED, payload: { error } })
