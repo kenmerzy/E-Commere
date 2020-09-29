@@ -122,7 +122,7 @@ const RegisterScreen = (props) => {
               style={{
                 flex: 1,
                 ...TextStyles.bodyMediumTextBold,
-                color: Colors.neutralGrey,
+                color: Colors.neutralDark,
               }}
               placeholder="Full Name"
               value={fullName}
@@ -159,7 +159,7 @@ const RegisterScreen = (props) => {
               style={{
                 flex: 1,
                 ...TextStyles.bodyMediumTextBold,
-                color: Colors.neutralGrey,
+                color: Colors.neutralDark,
               }}
 
               placeholder="Your Email"
@@ -197,7 +197,7 @@ const RegisterScreen = (props) => {
               style={{
                 flex: 1,
                 ...TextStyles.bodyMediumTextBold,
-                color: Colors.neutralGrey,
+                color: Colors.neutralDark,
               }}
 
               placeholder="Password"
@@ -235,7 +235,7 @@ const RegisterScreen = (props) => {
               style={{
                 flex: 1,
                 ...TextStyles.bodyMediumTextBold,
-                color: Colors.neutralGrey,
+                color: Colors.neutralDark,
               }}
 
               placeholder="Password Again"
@@ -277,7 +277,7 @@ const RegisterScreen = (props) => {
         >
           <Text style={{
             ...TextStyles.bodyNormalTextRegular,
-            color: Colors.neutralGrey,
+            color: Colors.neutralDark,
           }}
           >
             Have an account?

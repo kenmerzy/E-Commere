@@ -6,10 +6,7 @@ const initState = {
 }
 
 const userReducer = (state = initState, action) => {
-  console.tron.log('===============================================')
-  console.tron.log('token', action?.payload?.data?.token)
-  console.tron.log('===============================================')
-  switch (action) {
+  switch (action.type) {
     case userTypes.REGISTER_USER_SUCCESS:
 
       return { ...state }
@@ -17,6 +14,7 @@ const userReducer = (state = initState, action) => {
       return { ...state }
     case userTypes.LOGIN_USER_SUCCESS:
       const { token } = action?.payload?.data
+      console.tron.log({ token })
 
       return { ...state, token }
     case userTypes.LOGIN_USER_FAILED:
