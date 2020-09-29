@@ -1,20 +1,49 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 import { userTypes } from '../types'
-import { userActions } from '../actions'
+import { API_URL } from '../../configs'
 
 function* registerUserSaga(action) {
   try {
-    const user = yield call(
-      () => axios.get('https://huymanh.dev/ecommerce/api')
+    const registerResopne = yield call(
+      () => axios.post(`${API_URL}/user/register`, {
+        email: action?.payload?.data?.email,
+        password: action?.payload?.data?.password,
+        fullname: action?.payload?.data?.fullname,
+      })
     )
-    yield put({ type: userTypes.GET_WEATHER_SUCCESS, payload: { data: user.data } })
+    console.tron.log('===============================================')
+    console.tron.log('registerResopne', registerResopne)
+    console.tron.log('===============================================')
+    yield put({
+      type: userTypes.REGISTER_USER_SUCCESS,
+      payload: { data: registerResopne.data },
+    })
   } catch (error) {
     yield put({ type: userTypes.REGISTER_USER_FAILED, payload: { error } })
   }
 }
-function* userSaga() {
-  yield takeLatest(userTypes.GET_WEATHER, registerUserSaga)
+function* loginUserSaga(action) {
+  try {
+    const loginResopne = yield call(
+      () => axios.post(`${API_URL}/user/login`, {
+        email: action?.payload?.data?.email,
+        password: action?.payload?.data?.password,
+      })
+    )
+    console.tron.log('===============================================')
+    console.tron.log('loginResopne', loginResopne)
+    console.tron.log('===============================================')
+    yield put({
+      type: userTypes.LOGIN_USER_SUCCESS,
+      payload: { data: loginResopne.data },
+    })
+  } catch (error) {
+    yield put({ type: userTypes.LOGIN_USER_FAILED, payload: { error } })
+  }
 }
 
-export default userSaga
+export default function* userSaga() {
+  yield takeLatest(userTypes.LOGIN_USER, loginUserSaga)
+  yield takeLatest(userTypes.REGISTER_USER, registerUserSaga)
+}

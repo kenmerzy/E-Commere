@@ -1,29 +1,19 @@
-const avatar = require('./avatar.png')
-const back = require('./back.png')
-const heart = require('./heart.png')
-const more = require('./more.png')
-const nikeRed = require('./nikeRed.png')
-const product1 = require('./product1.png')
-const product2 = require('./product2.png')
-const product3 = require('./product3.png')
-const product4 = require('./product4.png')
-const product5 = require('./product5.png')
-const search = require('./search.png')
-const starDefault = require('./starDefault.png')
-const startActive = require('./startActive.png')
-
-export {
-  avatar,
-  back,
-  heart,
-  more,
-  nikeRed,
-  product1,
-  product2,
-  product3,
-  product4,
-  product5,
-  search,
-  starDefault,
-  startActive,
-}
+export const avatar = require('./avatar.png')
+export const back = require('./back.png')
+export const heart = require('./heart.png')
+export const more = require('./more.png')
+export const nikeRed = require('./nikeRed.png')
+export const product1 = require('./product1.png')
+export const product2 = require('./product2.png')
+export const product3 = require('./product3.png')
+export const product4 = require('./product4.png')
+export const product5 = require('./product5.png')
+export const search = require('./search.png')
+export const starDefault = require('./starDefault.png')
+export const startActive = require('./startActive.png')
+export const iconLogo = require('./iconLogo.png')
+export const iconEmail = require('./iconEmail.png')
+export const iconPassword = require('./iconPassword.png')
+export const iconGoogle = require('./iconGoogle.png')
+export const iconFacebook = require('./iconFacebook.png')
+export const iconFullname = require('./iconFullname.png')
