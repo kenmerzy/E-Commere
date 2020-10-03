@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Provider } from 'react-redux'
 import FlashMessage from 'react-native-flash-message'
 import {
-  LoginScreen, RegisterScreen, SplashScreen, HomeScreen,
+  LoginScreen, RegisterScreen, SplashScreen, HomeScreen, AccountScreen,
 } from './src/screens'
 import store from './src/redux/store'
 import { Colors, TextStyles } from './assets/styles'
@@ -27,6 +27,7 @@ const App = () => {
           <Stack.Screen name={SCREEN_NAME.LoginScreen} component={LoginScreen} />
           <Stack.Screen name={SCREEN_NAME.RegisterScreen} component={RegisterScreen} />
           <Stack.Screen name={SCREEN_NAME.HomeScreen} component={HomeScreen} />
+          <Stack.Screen name={SCREEN_NAME.AccountScreen} component={AccountScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       <FlashMessage
