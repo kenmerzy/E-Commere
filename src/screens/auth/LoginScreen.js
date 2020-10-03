@@ -4,8 +4,7 @@ import {
 } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useDispatch, useSelector } from 'react-redux'
-import { showMessage, hideMessage } from 'react-native-flash-message'
+import { useDispatch } from 'react-redux'
 import {
   iconLogo, iconEmail, iconPassword, iconFacebook, iconGoogle,
 } from '../../../assets/images'
@@ -25,7 +24,8 @@ const LoginScreen = (props) => {
   const [passwordUser, setPasswordUser] = useState(__DEV__ ? '123456' : '')
 
   const handleRegisterPress = () => {
-    navigation.navigate(SCREEN_NAME.RegisterScreen)
+    // navigation.navigate(SCREEN_NAME.RegisterScreen)
+    NavigationHelpers.navigateToScreen(SCREEN_NAME.RegisterScreen, null)
   }
   const handleLoginPress = async () => {
     dispatch(userActions.loginUser({
@@ -33,7 +33,7 @@ const LoginScreen = (props) => {
       password: passwordUser,
     }, (response) => {
       if (response.success) {
-        navigation.navigate(SCREEN_NAME.HomeScreen)
+        NavigationHelpers.navigateToScreen(SCREEN_NAME.AccountScreen, response.data.token)
       } else {
         Helpers.showMess(response.message, 'error')
       }

@@ -28,96 +28,96 @@ export const Fonts = {
 export const TextStyles = {
   heading1: {
     ...Fonts.bold,
-    fontSize: 32,
+    fontSize: 32 / 375 * width,
     lineHeight: 1.5,
   },
   heading2: {
     ...Fonts.bold,
-    fontSize: 24,
+    fontSize: 24 / 375 * width,
     lineHeight: 1.5,
   },
   heading3: {
     ...Fonts.bold,
-    fontSize: 20,
+    fontSize: 20 / 375 * width,
     lineHeight: 1.5,
   },
   heading4: {
     ...Fonts.bold,
-    fontSize: 16,
+    fontSize: 16 / 375 * width,
     lineHeight: 1.5,
   },
   heading5: {
     ...Fonts.bold,
-    fontSize: 14,
+    fontSize: 14 / 375 * width,
     lineHeight: 1.5,
   },
   heading6: {
     ...Fonts.bold,
-    fontSize: 10,
+    fontSize: 10 / 375 * width,
     lineHeight: 1.5,
   },
 
   bodyLargeTextBold: {
     ...Fonts.bold,
-    fontSize: 16,
+    fontSize: 16 / 375 * width,
   },
   bodyLargeTextRegular: {
     ...Fonts.regular,
-    fontSize: 16,
+    fontSize: 16 / 375 * width,
   },
   bodyMediumTextBold: {
     ...Fonts.bold,
-    fontSize: 14,
+    fontSize: 14 / 375 * width,
   },
   bodyMediumTextRegular: {
     ...Fonts.regular,
-    fontSize: 14,
+    fontSize: 14 / 375 * width,
   },
   bodyNormalTextBold: {
     ...Fonts.bold,
-    fontSize: 12,
+    fontSize: 12 / 375 * width,
   },
   bodyNormalTextRegular: {
     ...Fonts.regular,
-    fontSize: 12,
+    fontSize: 12 / 375 * width,
   },
 
   captionLargeTextBold: {
     ...Fonts.bold,
-    fontSize: 12,
+    fontSize: 12 / 375 * width,
     lineHeight: 1.5,
   },
   captionLargeTextRegular: {
     ...Fonts.regular,
-    fontSize: 12,
+    fontSize: 12 / 375 * width,
     lineHeight: 1.5,
   },
   captionNormalTextBold: {
     ...Fonts.bold,
-    fontSize: 10,
+    fontSize: 10 / 375 * width,
     lineHeight: 1.5,
   },
   captionNormalTextRegular: {
     ...Fonts.regular,
-    fontSize: 10,
+    fontSize: 10 / 375 * width,
     lineHeight: 1.5,
   },
   captionNormalRegularLine: {
     ...Fonts.regular,
-    fontSize: 10,
+    fontSize: 10 / 375 * width,
     textDecorationLine: 'line-through',
     lineHeight: 1.5,
   },
 
   linkNormal: {
     ...Fonts.bold,
-    fontSize: 14,
+    fontSize: 14 / 375 * width,
     lineHeight: 1.5,
     color: Colors.primaryBlue,
   },
   linkSmall: {
     ...Fonts.bold,
-    fontSize: 12,
+    fontSize: 12 / 375 * width,
     lineHeight: 1.5,
     color: Colors.primaryBlue,
   },

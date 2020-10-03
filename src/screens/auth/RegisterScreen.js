@@ -13,6 +13,7 @@ import {
   iconLogo, iconEmail, iconPassword, iconFullname,
 } from '../../../assets/images'
 import { userActions } from '../../redux/actions'
+import { NavigationHelpers, Helpers } from '../../utils'
 
 const { width } = Dimensions.get('window')
 const screenScale = 375 / width
@@ -22,6 +23,7 @@ const RegisterScreen = (props) => {
   const [password, setPassword] = useState(__DEV__ ? '123456' : '')
   const [passwordAgain, setPasswordAgain] = useState(__DEV__ ? '123456' : '')
   const [isTextInputFocus, setIsTextInputFocus] = useState(false)
+
   const { navigation } = props
   const dispatch = useDispatch()
   const handleRegisterPress = () => {
@@ -31,6 +33,13 @@ const RegisterScreen = (props) => {
           fullname: fullName,
           email: emailUser,
           password,
+        },
+        (response) => {
+          if (response.success) {
+            Helpers.showMess(' Account successfully created', 'success')
+          } else {
+            Helpers.showMess(response.message, 'error')
+          }
         }
       ))
     } else {
@@ -42,7 +51,7 @@ const RegisterScreen = (props) => {
     }
   }
   const handleLoginPress = () => {
-    navigation.goBack()
+    NavigationHelpers.navigateBack()
   }
   useEffect(() => {
     switch (isTextInputFocus) {
@@ -94,7 +103,7 @@ const RegisterScreen = (props) => {
               color: Colors.neutralGrey,
             }}
           >
-            Create an new account
+            Create a new account
           </Text>
         </View>
 

@@ -14,3 +14,10 @@ export const loginUser = (data, callback) => {
   }
   )
 }
+export const getProfileUser = (data, callback) => {
+  return ({
+    type: userTypes.PROFILE_USER,
+    payload: { data, callback },
+  }
+  )
+}
