@@ -6,12 +6,15 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useDispatch } from 'react-redux'
 import {
-  iconBack, avatar, iconBirthday, iconEmail, iconGender, iconPassword,
+  avatar, iconBirthday, iconEmail, iconGender, iconPassword, iconPhone, iconRight,
 } from '../../../assets/images'
+import { HeaderTitle } from '../../components'
 import { Colors, TextStyles } from '../../../assets/styles'
 import { userActions } from '../../redux/actions'
-import { Helpers, NavigationHelpers } from '../../utils'
+import { Helpers } from '../../utils'
 
+const { width } = Dimensions.get('window')
+const screenScale = width / 375
 const AccountScreen = (props) => {
   const [tokenUser, setTokenUser] = useState(props.route.params)
 
@@ -24,10 +27,7 @@ const AccountScreen = (props) => {
 
   const { width } = Dimensions.get('window')
   const dispatch = useDispatch()
-  const handleGoBackPress = () => {
-    const screenScale = width / 375
-    NavigationHelpers.navigateBack()
-  }
+
   useEffect(() => {
     dispatch(userActions.getProfileUser({
       token: tokenUser,
@@ -39,69 +39,39 @@ const AccountScreen = (props) => {
         setBirthDay(response?.data?.birthday)
         setEmail(response?.data?.email)
         setPhoneNumber(response?.data?.phone)
-      } else {
-        Helpers.showMess('Can not get profile info !!!', 'error')
       }
     }))
   }, [])
   return (
     <View style={{ flex: 1, backgroundColor: Colors.backgroundWhite }}>
       <SafeAreaView />
-      <View style={{
-        marginLeft: 16,
-        marginRight: 12,
-        marginTop: 15,
-        flexDirection: 'row',
-        alignItems: 'center',
-
-      }}
-      >
-        <TouchableOpacity
-          onPress={handleGoBackPress}
-        >
-          <Image
-            source={iconBack}
-            style={{
-              width: 24,
-              height: 24,
-            }}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-        <View style={{ flex: 1, marginLeft: 12 }}>
-          <Text style={{
-            ...TextStyles.bodyLargeTextBold,
-            color: Colors.neutralDark,
-          }}
-          >
-            Profile
-          </Text>
-        </View>
-      </View>
+      <HeaderTitle>
+        Profile
+      </HeaderTitle>
       <View style={{
         width,
         height: 2 * StyleSheet.hairlineWidth,
         backgroundColor: Colors.neutralLight,
-        marginTop: 28,
+        marginTop: 28 * screenScale,
         marginBottom: 24,
       }}
       />
       <View style={{
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 16,
+        marginLeft: 16 * screenScale,
       }}
       >
         <Image
           source={avatar}
           style={{
-            width: 72,
-            height: 72,
-            borderRadius: 36,
+            width: 72 * screenScale,
+            height: 72 * screenScale,
+            borderRadius: 36 * screenScale,
           }}
           resizeMode="cover"
         />
-        <View style={{ marginLeft: 16 }}>
+        <View style={{ marginLeft: 16 * screenScale }}>
           <Text style={{
             marginBottom: 4,
             ...TextStyles.bodyMediumTextBold,
@@ -128,7 +98,7 @@ const AccountScreen = (props) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: 15,
+            padding: 15 * screenScale,
           }}
           >
             <View style={{
@@ -141,8 +111,8 @@ const AccountScreen = (props) => {
               <Image
                 source={iconGender}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 24 * screenScale,
+                  height: 24 * screenScale,
                 }}
                 resizeMode="contain"
               />
@@ -166,16 +136,16 @@ const AccountScreen = (props) => {
                 <Text style={{
                   ...TextStyles.bodyNormalTextRegular,
                   color: Colors.neutralGrey,
-                  marginRight: 16,
+                  marginRight: 16 * screenScale,
                 }}
                 >
                   {gender}
                 </Text>
                 <Image
-                  source={iconBack}
+                  source={iconRight}
                   style={{
-                    width: 24,
-                    height: 24,
+                    width: 24 * screenScale,
+                    height: 24 * screenScale,
                   }}
                   resizeMode="contain"
                 />
@@ -190,7 +160,7 @@ const AccountScreen = (props) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: 15,
+            padding: 15 * screenScale,
           }}
           >
             <View style={{
@@ -203,13 +173,13 @@ const AccountScreen = (props) => {
               <Image
                 source={iconBirthday}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 24 * screenScale,
+                  height: 24 * screenScale,
                 }}
                 resizeMode="contain"
               />
               <Text style={{
-                marginLeft: 16,
+                marginLeft: 16 * screenScale,
                 ...TextStyles.bodyNormalTextBold,
                 color: Colors.neutralDark,
               }}
@@ -228,16 +198,16 @@ const AccountScreen = (props) => {
                 <Text style={{
                   ...TextStyles.bodyNormalTextRegular,
                   color: Colors.neutralGrey,
-                  marginRight: 16,
+                  marginRight: 16 * screenScale,
                 }}
                 >
                   {birthDay}
                 </Text>
                 <Image
-                  source={iconBack}
+                  source={iconRight}
                   style={{
-                    width: 24,
-                    height: 24,
+                    width: 24 * screenScale,
+                    height: 24 * screenScale,
                   }}
                   resizeMode="contain"
                 />
@@ -252,7 +222,7 @@ const AccountScreen = (props) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: 15,
+            padding: 15 * screenScale,
           }}
           >
             <View style={{
@@ -265,15 +235,15 @@ const AccountScreen = (props) => {
               <Image
                 source={iconEmail}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 24 * screenScale,
+                  height: 24 * screenScale,
                   tintColor: Colors.primaryBlue,
                 }}
 
                 resizeMode="contain"
               />
               <Text style={{
-                marginLeft: 16,
+                marginLeft: 16 * screenScale,
                 ...TextStyles.bodyNormalTextBold,
                 color: Colors.neutralDark,
               }}
@@ -292,16 +262,16 @@ const AccountScreen = (props) => {
                 <Text style={{
                   ...TextStyles.bodyNormalTextRegular,
                   color: Colors.neutralGrey,
-                  marginRight: 16,
+                  marginRight: 16 * screenScale,
                 }}
                 >
                   {email}
                 </Text>
                 <Image
-                  source={iconBack}
+                  source={iconRight}
                   style={{
-                    width: 24,
-                    height: 24,
+                    width: 24 * screenScale,
+                    height: 24 * screenScale,
                   }}
                   resizeMode="contain"
                 />
@@ -316,7 +286,7 @@ const AccountScreen = (props) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: 15,
+            padding: 15 * screenScale,
           }}
           >
             <View style={{
@@ -327,15 +297,15 @@ const AccountScreen = (props) => {
             }}
             >
               <Image
-                source={iconGender}
+                source={iconPhone}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 24 * screenScale,
+                  height: 24 * screenScale,
                 }}
                 resizeMode="contain"
               />
               <Text style={{
-                marginLeft: 16,
+                marginLeft: 16 * screenScale,
                 ...TextStyles.bodyNormalTextBold,
                 color: Colors.neutralDark,
               }}
@@ -354,16 +324,16 @@ const AccountScreen = (props) => {
                 <Text style={{
                   ...TextStyles.bodyNormalTextRegular,
                   color: Colors.neutralGrey,
-                  marginRight: 16,
+                  marginRight: 16 * screenScale,
                 }}
                 >
                   {phoneNumber}
                 </Text>
                 <Image
-                  source={iconBack}
+                  source={iconRight}
                   style={{
-                    width: 24,
-                    height: 24,
+                    width: 24 * screenScale,
+                    height: 24 * screenScale,
                   }}
                   resizeMode="contain"
                 />
@@ -378,7 +348,7 @@ const AccountScreen = (props) => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: 15,
+            padding: 15 * screenScale,
           }}
           >
             <View style={{
@@ -391,15 +361,15 @@ const AccountScreen = (props) => {
               <Image
                 source={iconPassword}
                 style={{
-                  width: 24,
-                  height: 24,
+                  width: 24 * screenScale,
+                  height: 24 * screenScale,
                   tintColor: Colors.primaryBlue,
                 }}
                 resizeMode="contain"
 
               />
               <Text style={{
-                marginLeft: 16,
+                marginLeft: 16 * screenScale,
                 ...TextStyles.bodyNormalTextBold,
                 color: Colors.neutralDark,
               }}
@@ -418,16 +388,16 @@ const AccountScreen = (props) => {
                 <Text style={{
                   ...TextStyles.bodyNormalTextRegular,
                   color: Colors.neutralGrey,
-                  marginRight: 16,
+                  marginRight: 16 * screenScale,
                 }}
                 >
                   {password}
                 </Text>
                 <Image
-                  source={iconBack}
+                  source={iconRight}
                   style={{
-                    width: 24,
-                    height: 24,
+                    width: 24 * screenScale,
+                    height: 24 * screenScale,
                   }}
                   resizeMode="contain"
                 />
