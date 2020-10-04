@@ -24,7 +24,7 @@ const sagaMiddleware = createSagaMiddleware()
 const composeEnhancers = compose
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-const store = createStore(persistedReducer, composeEnhancers(
+const store = createStore(persistedReducer, {}, composeEnhancers(
   Reactotron.createEnhancer(),
   applyMiddleware(sagaMiddleware)
 ))

@@ -33,7 +33,7 @@ const LoginScreen = (props) => {
       password: passwordUser,
     }, (response) => {
       if (response.success) {
-        NavigationHelpers.navigateToScreen(SCREEN_NAME.AccountScreen, response.data.token)
+        NavigationHelpers.navigateToScreen(SCREEN_NAME.HomeScreen, null)
       } else {
         Helpers.showMess(response.message, 'error')
       }
@@ -106,6 +106,7 @@ const LoginScreen = (props) => {
                 width: 24,
                 height: 24,
                 marginRight: 10,
+                tintColor: Colors.primaryBlue,
               }}
               resizeMode="contain"
             />

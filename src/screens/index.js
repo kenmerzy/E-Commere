@@ -1,10 +1,15 @@
 import SplashScreen from './SlpashScreen'
-import HomeScreen from './HomeScreen'
 
 // AUTH
 import LoginScreen from './auth/LoginScreen'
 import RegisterScreen from './auth/RegisterScreen'
-import AccountScreen from './auth/AccountScreen'
+
+// AUTH
+import AccountScreen from './main/AccountScreen'
+import HomeScreen from './main/HomeScreen'
+import ExploreScreen from './main/ExploreScreen'
+import CartScreen from './main/CartScreen'
+import OfferScreen from './main/OfferScreen'
 
 export {
   SplashScreen,
@@ -12,4 +17,7 @@ export {
   RegisterScreen,
   HomeScreen,
   AccountScreen,
+  CartScreen,
+  ExploreScreen,
+  OfferScreen,
 }

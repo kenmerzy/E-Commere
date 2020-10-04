@@ -19,12 +19,12 @@ const userReducer = (state = initState, action) => {
       return { ...state }
     case userTypes.PROFILE_USER_SUCCESS:
       const { data } = action?.payload
-      return { ...state, data }
+      return { ...state, ...data }
     case userTypes.PROFILE_USER_FAILED:
       return { ...state }
 
     default:
-      return { ...state }
+      return state
   }
 }
 export default userReducer
