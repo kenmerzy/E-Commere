@@ -19,7 +19,7 @@ export const showMess = (message, type = 'error') => {
   }
   return showMessage({
     message,
-    ...MessageStyles.error,
+    ...MessageStyles.info,
 
   })
 }

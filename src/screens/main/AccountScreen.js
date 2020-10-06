@@ -1,22 +1,25 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react'
 import {
-  View, Text, TouchableOpacity, Image, StyleSheet, Dimensions,
+  View, Text, TouchableOpacity, Image, Dimensions,
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   avatar, iconBirthday, iconEmail, iconGender, iconPassword, iconPhone, iconRight,
 } from '../../../assets/images'
 import { HeaderTitle } from '../../components'
 import { Colors, TextStyles } from '../../../assets/styles'
 import { userActions } from '../../redux/actions'
-import { Helpers } from '../../utils'
+import { NavigationHelpers } from '../../utils'
+import { SCREEN_NAME } from '../../configs'
 
 const { width } = Dimensions.get('window')
 const screenScale = width / 375
 const AccountScreen = (props) => {
-  const [tokenUser, setTokenUser] = useState(props.route.params)
+  // const [tokenUser, setTokenUser] = useState('')
+
+  const tokenUser = (useSelector((state) => state.user.token))
 
   const [fullName, setFullName] = useState('')
   const [gender, setGender] = useState('')
@@ -25,9 +28,12 @@ const AccountScreen = (props) => {
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
 
-  const { width } = Dimensions.get('window')
-  const dispatch = useDispatch()
+  const handleNamePress = () => {
+    NavigationHelpers.navigateToScreen(SCREEN_NAME.ProfileNameScreen)
+  }
 
+  const dispatch = useDispatch()
+  console.tron.log({ tokenUser })
   useEffect(() => {
     dispatch(userActions.getProfileUser({
       token: tokenUser,
@@ -48,14 +54,7 @@ const AccountScreen = (props) => {
       <HeaderTitle>
         Profile
       </HeaderTitle>
-      <View style={{
-        width,
-        height: 2 * StyleSheet.hairlineWidth,
-        backgroundColor: Colors.neutralLight,
-        marginTop: 28 * screenScale,
-        marginBottom: 24,
-      }}
-      />
+
       <View style={{
         flexDirection: 'row',
         alignItems: 'center',
@@ -72,14 +71,18 @@ const AccountScreen = (props) => {
           resizeMode="cover"
         />
         <View style={{ marginLeft: 16 * screenScale }}>
-          <Text style={{
-            marginBottom: 4,
-            ...TextStyles.bodyMediumTextBold,
-            color: Colors.neutralDark,
-          }}
+          <TouchableOpacity
+            onPress={handleNamePress}
           >
-            {fullName}
-          </Text>
+            <Text style={{
+              marginBottom: 4,
+              ...TextStyles.bodyMediumTextBold,
+              color: Colors.neutralDark,
+            }}
+            >
+              {fullName}
+            </Text>
+          </TouchableOpacity>
           <Text style={{
             ...TextStyles.bodyNormalTextRegular,
             color: Colors.neutralGrey,

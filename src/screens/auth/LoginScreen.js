@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react'
 import {
   View, Image, Dimensions, StyleSheet, TextInput, TouchableOpacity, Alert,
@@ -8,7 +9,7 @@ import { useDispatch } from 'react-redux'
 import {
   iconLogo, iconEmail, iconPassword, iconFacebook, iconGoogle,
 } from '../../../assets/images'
-import { Colors, TextStyles, MessageStyles } from '../../../assets/styles'
+import { Colors, TextStyles } from '../../../assets/styles'
 import { Text } from '../../components'
 import { userActions } from '../../redux/actions'
 import { SCREEN_NAME } from '../../configs'
@@ -25,7 +26,7 @@ const LoginScreen = (props) => {
 
   const handleRegisterPress = () => {
     // navigation.navigate(SCREEN_NAME.RegisterScreen)
-    NavigationHelpers.navigateToScreen(SCREEN_NAME.RegisterScreen, null)
+    NavigationHelpers.navigateToScreen(SCREEN_NAME.RegisterScreen)
   }
   const handleLoginPress = async () => {
     dispatch(userActions.loginUser({
@@ -33,7 +34,7 @@ const LoginScreen = (props) => {
       password: passwordUser,
     }, (response) => {
       if (response.success) {
-        NavigationHelpers.navigateToScreen(SCREEN_NAME.AccountScreen, response.data.token)
+        NavigationHelpers.navigateToScreenInTab(SCREEN_NAME.MAIN_TAB, SCREEN_NAME.HomeScreen)
       } else {
         Helpers.showMess(response.message, 'error')
       }
@@ -106,6 +107,7 @@ const LoginScreen = (props) => {
                 width: 24,
                 height: 24,
                 marginRight: 10,
+                tintColor: Colors.primaryBlue,
               }}
               resizeMode="contain"
             />

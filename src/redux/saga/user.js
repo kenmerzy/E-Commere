@@ -65,6 +65,27 @@ function* getProfileUserSaga(action) {
       callback(getUserProfileResopne?.data)
     }
   } catch (error) {
+    callback(error.response.data)
+  }
+}
+function* updateProfileUserSaga(action) {
+  const { callback, data } = action.payload
+  const { token, fullname } = data
+  try {
+    const updateUserProfileResopne = yield call(
+      () => axios.post(`${API_URL}/user`, {
+        token,
+        fullname,
+      })
+    )
+    if (updateUserProfileResopne.data.success) {
+      yield put({
+        type: userTypes.PROFILE_USER_SUCCESS,
+        payload: { data: updateUserProfileResopne.data.data },
+      })
+      callback(updateUserProfileResopne?.data)
+    }
+  } catch (error) {
     console.log({ loi: error.response.data })
     callback(error.response.data)
   }
@@ -74,4 +95,5 @@ export default function* userSaga() {
   yield takeLatest(userTypes.LOGIN_USER, loginUserSaga)
   yield takeLatest(userTypes.REGISTER_USER, registerUserSaga)
   yield takeLatest(userTypes.PROFILE_USER, getProfileUserSaga)
+  yield takeLatest(userTypes.UPDATE_PROFILE_USER, updateProfileUserSaga)
 }
