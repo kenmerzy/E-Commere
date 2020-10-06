@@ -21,3 +21,10 @@ export const getProfileUser = (data, callback) => {
   }
   )
 }
+export const updateProfileUser = (data, callback) => {
+  return ({
+    type: userTypes.UPDATE_PROFILE_USER,
+    payload: { data, callback },
+  }
+  )
+}

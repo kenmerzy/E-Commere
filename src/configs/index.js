@@ -11,6 +11,7 @@ export const SCREEN_NAME = {
   ExploreScreen: 'ExploreScreen',
   OfferScreen: 'OfferScreen',
   CartScreen: 'CartScreen',
+  ProfileNameScreen: 'ProfileNameScreen',
   MAIN_TAB: 'MAIN_TAB',
 }
 export const TAB_DATA = [
@@ -32,6 +33,10 @@ export const TAB_DATA = [
   },
   {
     title: 'account',
+    image: iconAccount,
+  },
+  {
+    title: 'profile',
     image: iconAccount,
   },
 ]

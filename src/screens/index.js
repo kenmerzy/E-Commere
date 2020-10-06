@@ -9,6 +9,7 @@ import AccountScreen from './main/AccountScreen'
 import HomeScreen from './main/HomeScreen'
 import ExploreScreen from './main/ExploreScreen'
 import CartScreen from './main/CartScreen'
+import ProfileNameScreen from './auth/ProfileNameScreen'
 import OfferScreen from './main/OfferScreen'
 
 export {
@@ -20,4 +21,5 @@ export {
   CartScreen,
   ExploreScreen,
   OfferScreen,
+  ProfileNameScreen,
 }

@@ -134,4 +134,9 @@ export const MessageStyles = {
     titleStyle: TextStyles.bodyMediumTextBold,
     duration: 2500,
   },
+  info: {
+    style: { backgroundColor: Colors.primaryBlue, alignItems: 'center' },
+    titleStyle: TextStyles.bodyMediumTextBold,
+    duration: 2500,
+  },
 }
